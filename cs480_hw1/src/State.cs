@@ -3,9 +3,11 @@ using System.Numerics;
 using System.Text;
 
 namespace cs480_hw1; 
-
-//Used help from microsoft docs to implement the IEnumerable and IEnumerator
-//to allow for iteration over the collection
+  
+// This class just acts as a wrapper around the SortedList
+// The SortedList was chosen to allow for finding keys and values in the array easily
+// Used help from microsoft docs to implement the IEnumerable and IEnumerator
+// to allow for iteration over the collection
 
 using KVPair = KeyValuePair<Tuple<int, int>, int>;
 
@@ -59,7 +61,9 @@ public class State : IEnumerable, ICloneable {
   public bool DimsMatch(State s) => x_ == s.x_ && y_ == s.y_;
 
   public override bool Equals(object? obj) => Equals(obj as State ?? throw new InvalidOperationException());
+
   public bool Equals(State s) => Value.SequenceEqual(s.Value);
+
   public override int GetHashCode() => Value.GetHashCode();
   public override string ToString() {
     StringBuilder stringBuilder = new();

@@ -1,5 +1,6 @@
 ﻿namespace cs480_hw1; 
 
+// The node acts as a single part of the search tree
 public class Node : IComparable {
   public readonly State state;
   public readonly Node? parent;
@@ -19,7 +20,9 @@ public class Node : IComparable {
   public bool Equals(Node s) => state == s.state;
   public override int GetHashCode() => state.GetHashCode();
 
-  public int CompareTo(object? obj) => CompareTo(obj as Node ?? throw new InvalidOperationException());
+  public int CompareTo(object? obj) {
+    return CompareTo(obj as Node ?? throw new InvalidOperationException());
+  }
 
   public int CompareTo(Node node) {
     return depth.CompareTo(node.depth);
